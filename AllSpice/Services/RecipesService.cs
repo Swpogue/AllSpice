@@ -1,11 +1,17 @@
-namespace AllSpice.Services
-{
+namespace AllSpice.Services;
+
   public class RecipesService
     {
-        private readonly IDbConnection _db;
-        public RecipesService(IDbConnection db)
-    {
-      _db = db;
-    }
+        private readonly RecipesRepository _repo;
+
+  public RecipesService(RecipesRepository repo)
+  {
+    _repo = repo;
   }
-}
+
+  internal Recipe CreateRecipe(Recipe recipeData)
+  {
+    Recipe recipe = _repo.CreateRecipe(recipeData);
+    return recipe;
+  }
+  }

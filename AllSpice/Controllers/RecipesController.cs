@@ -24,7 +24,7 @@ public class RecipesController : ControllerBase
       Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
       recipeData.CreatorId = userInfo.Id;
 
-      Recipe recipe = _recipeService.CreateRecipe(recipeData);
+      Recipe recipe = _recipesService.CreateRecipe(recipeData);
       return new ActionResult<Recipe>(Ok(recipe));
     }
     catch (Exception e)
