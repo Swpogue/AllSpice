@@ -1,16 +1,16 @@
 namespace AllSpice.Repositories;
 
-  public class RecipesRepository
-    {
-        private readonly IDbConnection _db;
+public class RecipesRepository
+{
+  private readonly IDbConnection _db;
 
-    public RecipesRepository(IDbConnection db)
-    {
-      _db = db;
-    }
-  
-  
-   internal Recipe CreateRecipe(Recipe recipeData)
+  public RecipesRepository(IDbConnection db)
+  {
+    _db = db;
+  }
+
+
+  internal Recipe CreateRecipe(Recipe recipeData)
   {
     string sql = @"
     INSERT INTO recipes
@@ -25,13 +25,30 @@ namespace AllSpice.Repositories;
     JOIN accounts creator ON recipes.creatorId = creator.id
     WHERE recipes.id = LAST_INSERT_ID();
     ";
-   
+
     Recipe recipe = _db.Query<Recipe, Account, Recipe>(sql, (recipe, creator) =>
     {
       recipe.Creator = creator;
-      return recipe; 
+      return recipe;
 
     }, recipeData).FirstOrDefault();
     return recipe;
   }
+
+  internal List<Recipe> GetAllRecipes()
+  {
+    string sql = @"
+    SELECT
+    recipes.*,
+    creator.*
+    FROM recipes
+    JOIN accounts creator ON recipes.creatorId = creator.id;
+    ";
+    List<Recipe> recipes = _db.Query<Recipe, Account, Recipe>(sql, (recipe, creator) =>
+    {
+      recipe.Creator = creator;
+      return recipe;
+    }).ToList();
+    return recipes;
   }
+}
