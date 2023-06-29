@@ -20,4 +20,11 @@ namespace AllSpice.Services;
     List<Recipe> recipes = _repo.GetAllRecipes();
     return recipes;
   }
+
+  internal Recipe GetRecipeById(int recipeId)
+  {
+    Recipe recipe = _repo.GetRecipeById(recipeId);
+    if (recipe == null) throw new Exception($"No recipe at id:{recipeId}.");
+    return recipe;
+  }
 }
