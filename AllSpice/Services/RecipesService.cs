@@ -27,4 +27,16 @@ namespace AllSpice.Services;
     if (recipe == null) throw new Exception($"No recipe at id:{recipeId}.");
     return recipe;
   }
+
+  internal Recipe UpdateRecipe(Recipe updateData)
+  {
+    Recipe original = GetRecipeById(updateData.Id);
+    original.Title = updateData.Title != null ? updateData.Title : original.Title;
+    original.Instructions = updateData.Instructions != null ? updateData.Instructions : original.Instructions;
+    original.Img = updateData.Img != null ? updateData.Img : original.Img;
+    original.Category = updateData.Category != null ? updateData.Category : original.Category;
+
+    _repo.UpdateRecipe(original);
+    return original;
+  }
 }

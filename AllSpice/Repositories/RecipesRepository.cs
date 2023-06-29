@@ -69,4 +69,16 @@ public class RecipesRepository
     }, new { recipeId }).FirstOrDefault();
     return recipe;
   }
+
+  internal void UpdateRecipe(Recipe updateData)
+  {
+    string sql = @"
+    UPDATE recipes SET
+    title = @title,
+    instructions = @instructions,
+    img = @img,
+    category = @category
+    WHERE id = @id;";
+    _db.Execute(sql, updateData);
+  }
 }
