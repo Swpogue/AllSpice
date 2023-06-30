@@ -32,4 +32,18 @@ namespace AllSpice.Repositories;
    }, ingredientData).FirstOrDefault();
    return ingredient;
   }
-    }
+
+  internal List<Ingredient> GetIngredientsByRecipeId(int recipeId)
+  {
+    string sql = @"
+    SELECT
+    *
+    FROM ingredients
+    WHERE recipeID = @recipeId;
+    ";
+
+    List<Ingredient> recIng = _db.Query<Ingredient>(sql, new {recipeId}).ToList();
+    return new List<Ingredient>(recIng);
+  
+  }
+}
