@@ -15,6 +15,12 @@ namespace AllSpice.Services;
     return ingredient;
   }
 
+  internal void DeleteIngredient(int ingredientId)
+  {
+    int rows = _repo.DeleteIngredient(ingredientId);
+    if (rows > 1) new Exception("OH NO!");
+  }
+
   internal List<Ingredient> GetIngredientsByRecipeId(int recipeId)
   {
    List<Ingredient> ingredients = _repo.GetIngredientsByRecipeId(recipeId);

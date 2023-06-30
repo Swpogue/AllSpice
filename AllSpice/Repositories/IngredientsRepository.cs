@@ -33,6 +33,17 @@ namespace AllSpice.Repositories;
    return ingredient;
   }
 
+  internal int DeleteIngredient(int ingredientId)
+  {
+            string sql = @"
+        DELETE FROM ingredients 
+        WHERE id = @ingredientId
+        LIMIT 1
+        ;";
+        int rows = _db.Execute(sql, new { ingredientId });
+        return rows;
+  }
+
   internal List<Ingredient> GetIngredientsByRecipeId(int recipeId)
   {
     string sql = @"

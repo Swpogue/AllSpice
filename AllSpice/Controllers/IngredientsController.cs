@@ -31,9 +31,17 @@ public class IngredientsController : ControllerBase
     }
   }
 
+[HttpDelete ("{ingredientId}")]
 
-
+    public ActionResult<string> DeleteIngredient(int ingredientId)
+    {
+        _ingredientsService.DeleteIngredient(ingredientId);
+        return Ok("Ingredient was deleted!");
+    }
 }
+
+
+
 
 
 
