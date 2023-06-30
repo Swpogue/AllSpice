@@ -15,6 +15,14 @@ namespace AllSpice.Services;
     return recipe;
   }
 
+  internal void DeleteRecipe(int recipeId, string userId)
+  {
+    Recipe recipe = GetRecipeById(recipeId);
+    if (recipe.CreatorId != userId) new Exception("Not your recipe");
+    int rows = _repo.DeleteRecipe(recipeId);
+    if (rows > 1) new Exception("You deleted TOO hard!");
+  }
+
   internal List<Recipe> GetAllRecipes()
   {
     List<Recipe> recipes = _repo.GetAllRecipes();

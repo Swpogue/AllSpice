@@ -35,6 +35,16 @@ public class RecipesRepository
     return recipe;
   }
 
+  internal int DeleteRecipe(int recipeId)
+  {
+    string sql = @"
+    DELETE FROM recipes
+    WHERE id = @recipeId
+    LIMIT 1;";
+    int rows = _db.Execute(sql, new { recipeId });
+    return rows;
+  }
+
   internal List<Recipe> GetAllRecipes()
   {
     string sql = @"
