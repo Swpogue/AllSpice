@@ -7,12 +7,14 @@ public class RecipesController : ControllerBase
   private readonly RecipesService _recipesService;
   private readonly Auth0Provider _auth;
   private readonly IngredientsService _ingredientsService;
+  private readonly FavoritesService _favoritesService;
 
-  public RecipesController(RecipesService recipesService, Auth0Provider auth, IngredientsService ingredientsService)
+  public RecipesController(RecipesService recipesService, Auth0Provider auth, IngredientsService ingredientsService, FavoritesService favoritesService)
   {
     _recipesService = recipesService;
     _auth = auth;
     _ingredientsService = ingredientsService;
+    _favoritesService = favoritesService;
   }
 
 
@@ -112,5 +114,21 @@ public class RecipesController : ControllerBase
             return BadRequest(e.Message);
         }
     }
+   
+   [HttpGet("{recipeId}/favorites")]
+
+   public ActionResult<List<FavoriteAccount>> GetFavoritesByRecipeId(int recipeId)
+   {
+    try
+    {
+      List<FavoriteAccount> favorites = _favoritesService.GetFavoritesByRecipeId(recipeId);
+      return Ok(favorites);
+    }
+    catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+   }
+
 
 }
