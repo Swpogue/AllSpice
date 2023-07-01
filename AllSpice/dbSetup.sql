@@ -42,3 +42,11 @@ CREATE TABLE
 (title, category, img, instructions, creatorId)
 VALUES
 ("Pugs", "Asian", "https://images.unsplash.com/photo-1575425186775-b8de9a427e67?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80", "catch dog and roast over a fire", '');
+
+
+
+        SELECT
+        favorites.*
+        FROM favorites
+        WHERE favorites.id = 1
+        ;";

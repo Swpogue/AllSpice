@@ -14,5 +14,5 @@ namespace AllSpice.Models
 
 public class FavoriteRecipe : Recipe
 {
-  public int FavId {get; set;}
+  public int FavoriteId {get; set;}
 }

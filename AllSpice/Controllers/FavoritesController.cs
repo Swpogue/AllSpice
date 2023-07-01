@@ -29,6 +29,8 @@ namespace AllSpice.Controllers;
                 return BadRequest(e.Message);
             }
         }
+
+        
         [HttpDelete("{favoriteId}")]
         [Authorize]
         public async Task<ActionResult<string>> DeleteFavorite(int favoriteId)

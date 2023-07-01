@@ -1,8 +1,8 @@
 namespace AllSpice.Repositories;
 
 public class FavoritesRepository
-    {
-        private readonly IDbConnection _db;
+{
+  private readonly IDbConnection _db;
 
   public FavoritesRepository(IDbConnection db)
   {
@@ -11,27 +11,39 @@ public class FavoritesRepository
 
   internal Favorite CreateFavorite(Favorite favoriteData)
   {
-           string sql = @"
+    string sql = @"
         INSERT INTO favorites
         (accountId, recipeId)
         VALUES
         (@accountId, @recipeId);
         SELECT LAST_INSERT_ID();
         ";
-        int lastInsertId = _db.ExecuteScalar<int>(sql, favoriteData);
-        favoriteData.Id = lastInsertId; 
-        return favoriteData;
+    int lastInsertId = _db.ExecuteScalar<int>(sql, favoriteData);
+    favoriteData.Id = lastInsertId;
+    return favoriteData;
   }
 
   internal int DeleteFavorite(int favoriteId)
   {
-           string sql = @"
+    string sql = @"
         DELETE FROM favorites
         WHERE id = @favoriteId
         LIMIT 1
         ;";
-        int rows = _db.Execute(sql, new { favoriteId });
-        return rows;
+    int rows = _db.Execute(sql, new { favoriteId });
+    return rows;
+  }
+
+  internal Favorite GetById(int favoriteId)
+  {
+    string sql = @"
+        SELECT
+        favorites.*
+        FROM favorites
+        WHERE favorites.id = @favoriteId
+        ;";
+    Favorite favorite = _db.Query<Favorite>(sql, new { favoriteId }).FirstOrDefault();
+    return favorite;
   }
 
   internal List<FavoriteAccount> GetFavoritesByRecipeId(int recipeId)
@@ -47,16 +59,16 @@ public class FavoritesRepository
 
     List<FavoriteAccount> favorite = _db.Query<FavoriteAccount, Account, FavoriteAccount>(sql, (favorite, account) =>
     {
-        favorite.Id = account.Id;
-        return favorite;
+      favorite.Id = account.Id;
+      return favorite;
 
-    },new {recipeId}).ToList();
+    }, new { recipeId }).ToList();
     return favorite;
   }
 
   internal List<FavoriteRecipe> GetMyFavoriteRecipes(string accountId)
   {
-        string sql = @"
+    string sql = @"
         SELECT
         favs.*,
         recipes.*,
@@ -67,12 +79,12 @@ public class FavoritesRepository
         WHERE favs.accountId = @accountId
 
         ;";
-        List<FavoriteRecipe> myFavs = _db.Query<Favorite, FavoriteRecipe, Account, FavoriteRecipe>(sql, (fav, recipe, account) =>
-        {
-            recipe.FavId = fav.Id;
-            recipe.Creator = account;
-            return recipe;
-        }, new { accountId }).ToList();
-        return myFavs;
+    List<FavoriteRecipe> myFavs = _db.Query<Favorite, FavoriteRecipe, Account, FavoriteRecipe>(sql, (fav, recipe, account) =>
+    {
+      recipe.FavoriteId = fav.Id;
+      recipe.Creator = account;
+      return recipe;
+    }, new { accountId }).ToList();
+    return myFavs;
   }
 }

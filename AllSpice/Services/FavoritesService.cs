@@ -17,9 +17,17 @@ namespace AllSpice.Services
 
     internal void DeleteFavorite(int favoriteId, string userId)
     {
-      
+        Favorite favorite = GetById(favoriteId);
+        if (favorite.AccountId != userId) new Exception("Unauthorized to remove.!");
         int rows = _repo.DeleteFavorite(favoriteId);
-        if (rows > 1) new Exception("Something went wrong");
+        if (rows > 1) new Exception("WHAT went wrong?");
+    }
+
+    private Favorite GetById(int favoriteId)
+    {
+      Favorite favorite = _repo.GetById(favoriteId);
+      if (favorite == null) new Exception("No Id Here!");
+      return favorite;
     }
 
     internal List<FavoriteAccount> GetFavoritesByRecipeId(int recipeId)

@@ -10,5 +10,5 @@ public class Account
 
 public class FavoriteAccount : Account
 {
-  public int FavId {get; set;}
+  public int FavoriteId {get; set;}
 }
