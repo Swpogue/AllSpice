@@ -5,7 +5,7 @@
         <p class="m-0">Category: {{ recipes.category }}</p>
         <p class="m-0">Recipe: {{ recipes.title }}</p>
         <!-- TODO put Favorites here  -->
-        <p class="m-0 fs-4 justify-content-between d-flex">{{}}<i @click="favorite" class="mdi mdi-heart ps-2"></i><i @click="deleteRecipe" class="mdi mdi-delete"></i></p>
+        <p class="m-0 fs-4 justify-content-between d-flex">{{}}<i @click="favorite" class="mdi mdi-heart ps-2 icon" aria-label="Favorite"></i><i @click="deleteRecipe" class="mdi mdi-delete icon" aria-label="delete"></i></p>
       </div>
     </div>
 </template>
@@ -49,4 +49,7 @@ export default {
     width: 100%;
     object-fit: cover;
   }
+  .icon{
+  cursor: pointer;
+}
 </style>
