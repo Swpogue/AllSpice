@@ -10,6 +10,6 @@ export class Recipe{
     this.creatorId = data.creatorId
     this.creator = data.creator
     this.createdAt = data.createdAt
-    this.favorites = data.favorites
+    
   }
 }

@@ -1,12 +1,12 @@
 <template>
-  <header>
+  <header class="container-fluid">
     <Navbar />
   </header>
   <main>
     <router-view />
   </main>
    <footer class="bg-dark text-light">
-    Made with 💖 by CodeWorks
+   
   </footer>
 </template>
 
@@ -31,6 +31,9 @@ export default {
   --main-height: calc(100vh - 32px - 64px);
 }
 
+header{
+  height: 550px;
+}
 
 footer {
   display: grid;

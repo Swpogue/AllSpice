@@ -5,7 +5,7 @@
         <p class="m-0">Category: {{ recipes.category }}</p>
         <p class="m-0">Recipe: {{ recipes.title }}</p>
         <!-- TODO put Favorites here  -->
-        <p class="m-0">{{ recipes.favorites}}<i class="mdi mdi-heart ps-2"></i></p>
+        <p class="m-0">{{}}<i class="mdi mdi-heart ps-2"></i></p>
       </div>
     </div>
 </template>
