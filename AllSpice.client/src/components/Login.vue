@@ -1,6 +1,6 @@
 <template>
   <span class="">
-    <button class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0" @click="login"
+    <button class="btn selectable btn btn-outline-dark text-dark text-uppercase  my-lg-0" @click="login"
       v-if="!user.isAuthenticated">
       Login
     </button>
@@ -49,4 +49,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+button{
+  background-color: rgb(202, 212, 246);
+}
+
+</style>

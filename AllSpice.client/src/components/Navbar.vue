@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12 bgImg image-fluid d-flex justify-content-end">
 
-      <div class="col-md-1">
+      <div class="col-md-1 pt-3">
         <!-- LOGIN COMPONENT HERE -->
         <Login />
       </div>

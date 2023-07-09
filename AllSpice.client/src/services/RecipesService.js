@@ -1,4 +1,3 @@
-import { Modal } from "bootstrap"
 import { AppState } from "../AppState.js"
 import { Recipe } from "../models/Recipe.js"
 import { logger } from "../utils/Logger.js"
@@ -23,7 +22,6 @@ class RecipesService{
 
   async createRecipe(formData){
     const res = await api.post(`api/recipes`, formData)
-    Modal.getOrCreateInstance('#createRecipe').hide()
     return res.data
   }
 

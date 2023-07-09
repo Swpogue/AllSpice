@@ -10,32 +10,33 @@
           <div class="row modal-body">
             <div class="col-12">
               <label for="Recipe Name">Recipe Name</label>
-              <input type="text" id="title" name="title" class="form-control" required minlength="5" maxlength="25"  v-model="editable.title">
+              <input type="text" id="title" name="title" class="form-control" required minlength="5" maxlength="25" aria-label="Recipe Name" v-model="editable.title">
             </div>
             <div class="col-12">
               <label for="imgUrl" class="mt-2">Image URL</label>
-              <input type="url" id="imgUrl" name="imgUrl" class="form-control" required minlength="5" maxlength="500" v-model="editable.img">
+              <input type="url" id="imgUrl" name="imgUrl" class="form-control" required minlength="5" maxlength="500" aria-label="Image U R L" v-model="editable.img">
             </div>
             <div class="col-12">
               <label for="category">Category</label>
-              <select name="category" id="category" class="form-control" v-model="editable.category">
-                <option value="Soup">Soup</option>
-                <option value="Cheese">Cheese</option>
+              <select name="category" id="category" class="form-control" aria-label="Category" v-model="editable.category">
                 <option value="Mexican">Mexican</option>
                 <option value="Italian">Italian</option>
+                <option value="Asian">Asian</option>
+                <option value="Indian">Indian</option>
+                <option value="Thai">Thai</option>
                 <option value="Specialty Coffee">Specialty Coffee</option>
                 <option value="Other">Other</option>
               </select>
             </div>
             <label for="instructions" class="mt-2">Instructions</label>
             <div class="col-12">
-              <textarea  id="instructions" name="instructions" class="col-12" required minlength="5" maxlength="500"
+              <textarea  id="instructions" name="instructions" class="col-12" aria-label="Instructions" required minlength="5" maxlength="500"
               v-model="editable.instructions"></textarea>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-danger">Submit</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+            <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Submit">Submit</button>
           </div>
         </form>
       </div>
@@ -48,7 +49,6 @@
 import { ref } from "vue"
 import Pop from "../utils/Pop.js"
 import { recipesService } from "../services/RecipesService.js"
-import { Modal } from "bootstrap"
 export default {
   setup() {
     const editable = ref({})
@@ -60,7 +60,6 @@ export default {
           const formData = editable.value
            await recipesService.createRecipe(formData)
            editable.value = {}
-          
         } catch (error) {
           Pop.error(error)
         }

@@ -4,8 +4,9 @@
       <div class="text-center p-2 rounded-bottom text-black fw-bold">
         <p class="m-0">Category: {{ recipes.category }}</p>
         <p class="m-0">Recipe: {{ recipes.title }}</p>
+        <p>Created by: {{ recipes.creator.name }}</p>
         <!-- TODO put Favorites here  -->
-        <p class="m-0 fs-4 justify-content-between d-flex">{{}}<i @click="favorite" class="mdi mdi-heart ps-2 icon" aria-label="Favorite"></i><i @click="deleteRecipe" class="mdi mdi-delete icon" aria-label="delete"></i></p>
+        <p class="m-0 fs-4 justify-content-between d-flex">{{}}<i @click="f" class="mdi mdi-heart ps-2 icon" aria-label="Favorite"></i><i @click="deleteRecipe" class="mdi mdi-delete icon" aria-label="delete"></i></p>
       </div>
     </div>
 </template>
