@@ -1,12 +1,12 @@
 <template>
-  <!-- <create-recipe-modal id="createRecipeModal"></create-recipe-modal> -->
+  <create-recipe-modal id="createRecipeModal"></create-recipe-modal>
   <section class="container-fluid">
     <div class="row justify-content-center">
       <div class="d-flex justify-content-around">
         <button @click="filterBy = ''" class="btn btn-outline-dark w-15">All Recipes</button>
         <button @click="filterBy = 'favorites'" class="btn btn-outline-dark w-15">My Favorites</button>
         <button @click="filterBy = 'myRecipe'" class="btn btn-outline-dark w-15">My Recipes</button>
-        <!-- <button v-if="account.id" class="btn btn-outline-dark w-15" @click="openRecipeModal()">Create a Recipe</button> -->
+        <button v-if="account.id" class="btn btn-outline-dark w-15" @click="openRecipeModal()">Create a Recipe</button>
       </div>
     </div>
 
@@ -19,12 +19,12 @@
 </template>
 
 <script>
-import { computed, onMounted, ref} from "vue";
+import { computed, onMounted, ref, watchEffect} from "vue";
 import RecipeCard from "../components/RecipeCard.vue";
 import Pop from "../utils/Pop.js";
 import { recipesService } from "../services/RecipesService.js"
 import { AppState } from "../AppState.js";
-// import { Modal } from "bootstrap";
+import { Modal } from "bootstrap";
 import { logger } from "../utils/Logger.js";
 
 export default {
@@ -65,9 +65,9 @@ export default {
           // }
         }),
 
-        // openRecipeModal() {
-        //   Modal.getOrCreateInstance('#createRecipeModal').show()
-        // },
+        openRecipeModal() {
+          Modal.getOrCreateInstance('#createRecipeModal').show()
+        },
 
     };
   },

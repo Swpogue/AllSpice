@@ -23,6 +23,7 @@ class RecipesService{
   async createRecipe(formData){
     const res = await api.post(`api/recipes`, formData)
     return res.data
+    
   }
 
 }

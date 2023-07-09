@@ -1,6 +1,7 @@
 <template>
+  <recipe-details id="activeRecipeModal"></recipe-details>
     <div class="rounded elevation-5">
-      <img class="rounded-top" :src="recipes.img" :alt="recipes.title">
+      <img @click="activeRecipe()" class="rounded-top" :src="recipes.img" :alt="recipes.title">
       <div class="text-center p-2 rounded-bottom text-black fw-bold">
         <p class="m-0">Category: {{ recipes.category }}</p>
         <p class="m-0">Recipe: {{ recipes.title }}</p>
@@ -13,13 +14,16 @@
 
 
 <script>
+import { Modal } from "bootstrap";
 import { AppState } from "../AppState.js";
 import { Recipe } from "../models/Recipe.js";
 import { recipesService } from "../services/RecipesService.js";
 import { logger } from "../utils/Logger.js";
 import Pop from "../utils/Pop.js";
+import RecipeDetails from "./RecipeDetails.vue";
 
 export default {
+  components: { RecipeDetails },
   props: {
     recipes: {type: Recipe, required: true}
   },
@@ -37,6 +41,10 @@ export default {
         } catch (error) {
           Pop.error(error.message)
         }
+      },
+
+      activeRecipe(){
+        Modal.getOrCreateInstance('#activeRecipeModal').show()
       }
     }
   }
@@ -49,6 +57,7 @@ export default {
     height: 30vh;
     width: 100%;
     object-fit: cover;
+    cursor: pointer;
   }
   .icon{
   cursor: pointer;
