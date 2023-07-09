@@ -45,5 +45,10 @@ export default {
 
 
 <style lang="scss" scoped>
+ img {
+    height: 50vh;
+    width: 100%;
+    object-fit: cover;
+  }
 
 </style>
