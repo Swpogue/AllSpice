@@ -32,14 +32,11 @@ export default {
 
     const filterBy = ref('')
 
+    
 
     onMounted(() => { getRecipes(); });
 
-    // watchEffect(()=> {
-    //   if (AppState.recipes)
-    //   getRecipes()
-    // });
-
+    
     async function getRecipes() {
       try {
         await recipesService.getRecipes();
@@ -47,8 +44,12 @@ export default {
         Pop.error(error);
       }
     }
-
-
+    
+    
+    watchEffect(()=> {
+      if (AppState.activeRecipe)
+      getRecipes()
+    });
     return {
       
       filterBy,
