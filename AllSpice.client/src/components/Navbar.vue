@@ -7,16 +7,7 @@
         <Login />
       </div>
     </div>
-    <div class="d-flex justify-content-around">
-      <button class="btn btn-outline-dark w-15">All Recipes</button>
-      <button class="btn btn-outline-dark w-15">My Favorites</button>
-      <button class="btn btn-outline-dark w-15">My Recipes</button>
-    </div>
-
-
-    
-    
-    
+   
   </div>
 </template>
 
