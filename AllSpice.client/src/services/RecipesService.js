@@ -22,7 +22,9 @@ class RecipesService{
 
   async createRecipe(formData){
     const res = await api.post(`api/recipes`, formData)
-    return res.data
+    this.getRecipes()
+    AppState.activeRecipe = res.data
+    // this.activeRecipeById()
   }
 
   async activeRecipeById(recipeId){

@@ -36,14 +36,14 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
-            <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Submit">Submit</button>
+            <button type="submit" class="btn btn-danger" aria-label="Submit" data-bs-dismiss="modal" @click="openActiveRecipeModal()">Submit</button>
           </div>
         </form>
       </div>
     </div>
   </div>
   
-  <div v-if="activeRecipe.id">
+  <!-- <div v-if="activeRecipe.id">
     <div class="modal container-fluid" tabindex="-1" id="createRecipeModal">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -64,13 +64,13 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
-            <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Submit">Submit</button>
+            <button type="submit" class="btn btn-danger" aria-label="Submit">Submit</button>
           </div>
         </form>
       </div>
     </div>
   </div>
-</div>
+</div> -->
 </template>
 
 
@@ -79,6 +79,7 @@ import { computed, ref } from "vue"
 import Pop from "../utils/Pop.js"
 import { recipesService } from "../services/RecipesService.js"
 import { AppState } from "../AppState.js"
+import { Modal } from "bootstrap"
 export default {
   setup() {
     const editable = ref({})
@@ -86,7 +87,9 @@ export default {
       editable,
       activeRecipe: computed(()=> AppState.activeRecipe),
 
-      
+      openActiveRecipeModal() {
+        Modal.getOrCreateInstance('#activeRecipeModal').show()
+        },
       
       
       async createRecipe() {
