@@ -20,6 +20,10 @@ import { recipesService } from "../services/RecipesService.js";
 import { logger } from "../utils/Logger.js";
 import Pop from "../utils/Pop.js";
 import RecipeDetails from "./RecipeDetails.vue";
+import { useRoute } from "vue-router";
+import { ingredientsService } from "../services/IngredientsService.js";
+import { AppState } from "../AppState.js";
+import { onMounted } from "vue";
 
 export default {
   components: { RecipeDetails },
@@ -28,11 +32,20 @@ export default {
   },
 
   setup(props){
+// const route = useRoute();
+// onMounted(()=> { getIngredientsByRecipeId(); });
+
+//     async function getIngredientsByRecipeId() {
+//       try {
+//         const recipeId = route.params.id
+//         logger.log('Get Ingredients', AppState.ingredients)
+//       } catch (error) {
+//         Pop.error(error)
+//       }
+    // }
 
     return {
-
       async deleteRecipe(){
-
         try {
           if (await Pop.confirm("You sure?")){
             const recipeId = props.recipes.id;
@@ -47,6 +60,8 @@ export default {
       async activeRecipeById(recipeId){
         try {
           await recipesService.activeRecipeById(recipeId)
+        await ingredientsService.getIngredientsByRecipeId(recipeId);
+
           Modal.getOrCreateInstance('#activeRecipeModal').show()
         } catch (error) {
           Pop.error(error)

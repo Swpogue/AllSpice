@@ -24,12 +24,12 @@ class RecipesService{
     const res = await api.post(`api/recipes`, formData)
     this.getRecipes()
     AppState.activeRecipe = res.data
-    // this.activeRecipeById()
   }
 
   async activeRecipeById(recipeId){
     AppState.activeRecipe = AppState.recipes.find(r => r.id == recipeId)
-    logger.log("Active Recipe")
+    logger.log("Active Recipe", AppState.activeRecipe)
+
 
   }
 
