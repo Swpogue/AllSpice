@@ -1,5 +1,5 @@
 <template>
-  <create-recipe-modal id="createRecipeModal"></create-recipe-modal>
+  <create-recipe-modal ></create-recipe-modal>
   <section class="container-fluid">
     <div class="row justify-content-center">
       <div class="d-flex justify-content-around">
@@ -31,9 +31,7 @@ export default {
   setup() {
 
     const filterBy = ref('')
-
     
-
     onMounted(() => { getRecipes(); });
 
     
@@ -46,10 +44,10 @@ export default {
     }
     
     
-    watchEffect(()=> {
-      if (AppState.activeRecipe)
-      getRecipes()
-    });
+    // watchEffect(()=> {
+    //   if (AppState.activeRecipe)
+    //   getRecipes()
+    // });
     return {
       
       filterBy,
@@ -72,7 +70,6 @@ export default {
 
     };
   },
-  components: { RecipeCard, }
 }
 </script>
 

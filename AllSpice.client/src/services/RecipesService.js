@@ -27,7 +27,7 @@ class RecipesService{
 
   async activeRecipeById(recipeId){
     AppState.activeRecipe = AppState.recipes.find(r => r.id == recipeId)
-    logger.log("Active Recipe", AppState.activeRecipe)
+    logger.log("Active Recipe")
 
   }
 

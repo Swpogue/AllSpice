@@ -4,7 +4,7 @@
       <div class="modal-content">
         <div class="modal-header row">
           <h4 class="modal-title col-10">Recipe: {{ recipe.title }}</h4>
-          <button type="button" class="btn-close col-1" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close col-1" data-bs-dismiss="modal" aria-label="Close" @click="clearActive()"></button>
         </div>
         <div class="row p-1">
           <h5>Category: {{ recipe.category }}</h5>
@@ -18,8 +18,8 @@
        
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
-            <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Submit">Submit</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close" @click="clearActive()">Cancel</button>
+            <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Submit" @click="clearActive()">Submit</button>
           </div>
         </form>
       </div>
@@ -36,7 +36,11 @@ export default {
   setup(){
     return {
 
-      recipe: computed(()=> AppState.activeRecipe)
+      recipe: computed(()=> AppState.activeRecipe),
+
+      clearActive(){
+        AppState.activeRecipe = {}
+      }
 
     }
   }
