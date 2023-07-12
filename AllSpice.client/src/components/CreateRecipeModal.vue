@@ -43,34 +43,6 @@
     </div>
   </div>
   
-  <!-- <div v-if="activeRecipe.id">
-    <div class="modal container-fluid" tabindex="-1" id="createRecipeModal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header row">
-          <h4 class="modal-title col-10">Recipe: {{ activeRecipe.title }}</h4>
-          <button type="button" class="btn-close col-1" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="row p-1">
-          <h5>Category: {{ activeRecipe.category }}</h5>
-          <h5>Instructions: <span>{{ activeRecipe.instructions }}</span></h5>
-          <p class="col-12"></p>
-          <img class="rounded-top" :src="activeRecipe.img" :alt="activeRecipe.title">
-          
-        </div>
-        <form @submit.prevent="createIngredients()">
-          <div class="row modal-body">
-            
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
-            <button type="submit" class="btn btn-danger" aria-label="Submit">Submit</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div> -->
 </template>
 
 

@@ -1,11 +1,11 @@
 <template>
   <recipe-details id="activeRecipeModal"></recipe-details>
     <div class="rounded elevation-5">
-      <img @click="activeRecipeById(recipes.id)" class="rounded-top" :src="recipes.img" :alt="recipes.title">
+      <img @click="activeRecipeById(recipe.id)" class="rounded-top" :src="recipe.img" :alt="recipe.title">
       <div class="text-center p-2 rounded-bottom text-black fw-bold">
-        <p class="m-0">Category: {{ recipes.category }}</p>
-        <p class="m-0">Recipe: {{ recipes.title }}</p>
-        <p>Created by: {{ recipes.creator.name }}</p>
+        <p class="m-0">Category: {{ recipe.category }}</p>
+        <p class="m-0">Recipe: {{ recipe.title }}</p>
+        <p>Created by: {{ recipe.creator.name }}</p>
         <!-- TODO put Favorites here  -->
         <p class="m-0 fs-4 justify-content-between d-flex">{{}}<i @click="f" class="mdi mdi-heart ps-2 icon" aria-label="Favorite"></i><i @click="deleteRecipe" class="mdi mdi-delete icon" aria-label="delete"></i></p>
       </div>
@@ -28,27 +28,17 @@ import { onMounted } from "vue";
 export default {
   components: { RecipeDetails },
   props: {
-    recipes: {type: Recipe, required: true}
+    recipe: {type: Recipe, required: true}
   },
 
   setup(props){
-// const route = useRoute();
-// onMounted(()=> { getIngredientsByRecipeId(); });
 
-//     async function getIngredientsByRecipeId() {
-//       try {
-//         const recipeId = route.params.id
-//         logger.log('Get Ingredients', AppState.ingredients)
-//       } catch (error) {
-//         Pop.error(error)
-//       }
-    // }
 
     return {
       async deleteRecipe(){
         try {
           if (await Pop.confirm("You sure?")){
-            const recipeId = props.recipes.id;
+            const recipeId = props.recipe.id;
             await recipesService.deleteRecipe(recipeId);
             // logger.log(recipeId)
           }

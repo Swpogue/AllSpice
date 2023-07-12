@@ -13,6 +13,7 @@ class IngredientsService{
   }
 
   async createIngredient(formData){
+    formData.recipeId = AppState.activeRecipe.id
     const res = await api.post(`api/ingredients`, formData)
     AppState.ingredients.unshift(new Ingredient(res.data))
     logger.log(res.data)

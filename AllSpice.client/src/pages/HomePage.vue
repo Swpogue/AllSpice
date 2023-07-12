@@ -11,8 +11,8 @@
     </div>
 
     <div class="row">
-      <div class="col-md-3 my-3 p-4" v-for="r in recipes" :key="r.id">
-        <RecipeCard :recipes="r" />
+      <div class="col-md-3 my-3 p-4" v-for="r in recipe" :key="r.id">
+        <RecipeCard :recipe="r" />
       </div>
     </div>
   </Section>
@@ -42,19 +42,14 @@ export default {
         Pop.error(error);
       }
     }
-
-   
     
     
-    // watchEffect(()=> {
-    //   if (AppState.activeRecipe)
-    //   getRecipes()
-    // });
+    
     return {
       
       filterBy,
       account: computed(() => AppState.account),
-      recipes: computed(() => {
+      recipe: computed(() => {
         if (!filterBy.value) {
           return AppState.recipes
         } else (filterBy.value == "myRecipe"); {
