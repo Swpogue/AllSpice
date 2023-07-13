@@ -1,5 +1,5 @@
 <template>
-    <div class="modal" tabindex="-1">
+    <div class="modal" id="activeRecipeModal" tabindex="-1">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -43,22 +43,30 @@ import Pop from "../utils/Pop.js";
 import { logger } from "../utils/Logger.js";
 import { useRoute } from "vue-router";
 import IngredientCard from "./IngredientCard.vue";
-import { Ingredient } from "../models/Ingredient.js";
+import { favoritesService } from "../services/FavoritesService.js";
 export default {
   components: { IngredientCard },
   setup(){
     const editable = ref({});
     const route = useRoute();
-
-
- 
+    onMounted(()=> getFavoriteByRecipeId())
+    
+    async function getFavoriteByRecipeId() {
+        try {
+          const recipeId = route.params.recipeId
+          await favoritesService.getFavoriteByRecipeId(recipeId)
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
+  
 
     return {
       editable,
 
       recipe: computed(()=> AppState.activeRecipe),
       ingredient: computed(()=> AppState.ingredients),
-      
+      favorite: computed(() => AppState.favorites),
 
 
       async createIngredient(){
@@ -71,6 +79,14 @@ export default {
           Pop.error(error)
         }
 
+      },
+      async favoriteRecipe(){
+        try {
+          const activeRecipeId = route.params.recipeId
+          await favoritesService.createFavorite(activeRecipeId)
+        } catch (error) {
+          Pop.error(error)
+        }
       },
 
       clearActive(){

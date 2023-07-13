@@ -1,6 +1,6 @@
 <template>
   <div class="col-12">
-    {{ ingredient.quantity }} {{ ingredient.name }}
+   <i @click="deleteIngredient()" class="mdi mdi-delete icon" aria-label="delete ingredient"></i> {{ ingredient.quantity }} {{ ingredient.name }}
   </div>
 </template>
 
@@ -9,6 +9,7 @@
 <script>
 import { Ingredient } from "../models/Ingredient.js";
 import { ingredientsService } from "../services/IngredientsService.js";
+import Pop from "../utils/Pop.js";
 
 export default {
 
@@ -38,5 +39,7 @@ export default {
 
 
 <style lang="scss" scoped>
-
+  .icon{
+  cursor: pointer;
+}
 </style>

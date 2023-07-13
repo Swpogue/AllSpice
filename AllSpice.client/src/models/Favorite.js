@@ -1,4 +1,4 @@
-import { Recipe } from "./Recipe.js"
+// import { Recipe } from "./Recipe.js"
 
 export class Favorite{
     constructor(data){
@@ -9,9 +9,9 @@ export class Favorite{
 }
 
 // Favorite Recipe for account
-export class MyFavorite extends Recipe{
-    constructor(data){
-        super(data)
-        this.favoriteId = data.favoriteId
-    }
-}
+// export class MyFavorite extends Recipe{
+//     constructor(data){
+//         super(data)
+//         this.favoriteId = data.favoriteId
+//     }
+// }
