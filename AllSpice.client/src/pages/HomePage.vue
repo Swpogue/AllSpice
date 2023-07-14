@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import { computed, onMounted, ref, watchEffect} from "vue";
-import RecipeCard from "../components/RecipeCard.vue";
+import { computed, onMounted, ref} from "vue";
+// import RecipeCard from "../components/RecipeCard.vue";
 import Pop from "../utils/Pop.js";
 import { recipesService } from "../services/RecipesService.js"
 import { AppState } from "../AppState.js";

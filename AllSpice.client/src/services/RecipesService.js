@@ -7,7 +7,6 @@ class RecipesService{
 
   async getRecipes(){
     const res = await api.get('api/recipes')
-    logger.log(res.data)
     AppState.recipes = res.data.map(r => new Recipe(r))
     logger.log('RECIPES', res.data)
   }
@@ -16,7 +15,7 @@ class RecipesService{
     const res = await api.delete(`api/recipes/${recipeId}`)
     const rIndex = AppState.recipes.findIndex(r=> r.id == recipeId)
     AppState.recipes.splice(rIndex, 1)
-    logger.log(res.data)
+    logger.log('DELETED RECIPE', res.data)
 
   }
 

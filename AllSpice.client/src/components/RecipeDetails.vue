@@ -49,16 +49,9 @@ export default {
   setup(){
     const editable = ref({});
     const route = useRoute();
-    onMounted(()=> getFavoriteByRecipeId())
     
-    async function getFavoriteByRecipeId() {
-        try {
-          const recipeId = route.params.recipeId
-          await favoritesService.getFavoriteByRecipeId(recipeId)
-      } catch (error) {
-        Pop.error(error)
-      }
-    }
+    
+   
   
 
     return {
@@ -66,7 +59,7 @@ export default {
 
       recipe: computed(()=> AppState.activeRecipe),
       ingredient: computed(()=> AppState.ingredients),
-      favorite: computed(() => AppState.favorites),
+      // favorite: computed(() => AppState.favorites),
 
 
       async createIngredient(){

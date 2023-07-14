@@ -1,7 +1,7 @@
 <template>
   <recipe-details></recipe-details>
     <div class="rounded elevation-5">
-      <img @click="activeRecipeById(recipe.id)" class="rounded-top" :src="recipe.img" :alt="recipe.title">
+      <img @click="activeRecipeById(recipe.id), getFavoriteByRecipeId(recipe.id)" class="rounded-top" :src="recipe.img" :alt="recipe.title">
       <div class="text-center p-2 rounded-bottom text-black fw-bold">
         <p class="m-0">Category: {{ recipe.category }}</p>
         <p class="m-0">Recipe: {{ recipe.title }}</p>
@@ -19,9 +19,9 @@ import { Recipe } from "../models/Recipe.js";
 import { recipesService } from "../services/RecipesService.js";
 import { logger } from "../utils/Logger.js";
 import Pop from "../utils/Pop.js";
-// import RecipeDetails from "./RecipeDetails.vue";
-// import { useRoute } from "vue-router";
 import { ingredientsService } from "../services/IngredientsService.js";
+import { favoritesService } from "../services/FavoritesService.js";
+import { useRoute } from "vue-router";
 
 export default {
   props: {
@@ -29,11 +29,19 @@ export default {
   },
   
   setup(props){
-    
-    
+    const route = useRoute();
+
     
     return {
-      // components: { RecipeDetails },
+      async getFavoriteByRecipeId(recipeId) {
+         try {
+           
+           await favoritesService.getFavoriteByRecipeId(recipeId)
+       } catch (error) {
+         Pop.error(error)
+       }
+     },
+
       async deleteRecipe(){
         try {
           if (await Pop.confirm("You sure?")){
